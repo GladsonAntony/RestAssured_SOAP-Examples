@@ -3,9 +3,9 @@
  * @Date 06-DEC-2017
  */
 
-package example.tests;
+package example1;
 
-import example.requestSetup.GetBankRequest;
+import example1.GetBankRequest;
 import io.restassured.RestAssured;
 import io.restassured.config.LogConfig;
 import io.restassured.filter.log.LogDetail;
@@ -23,7 +23,7 @@ import java.io.IOException;
 
 import static controllers.InitMethod.BaseURL;
 
-public class Test2 {
+public class Test1 {
     GetBankRequest request = new GetBankRequest();
 
     @DataProvider(name = "bankBlz")
@@ -37,7 +37,7 @@ public class Test2 {
         };
     }
 
-    @Test(dataProvider = "bankBlz")
+    @Test(enabled = false, dataProvider = "bankBlz")
     @Description("To verify the usage of SOAP Requests using Rest Assured.")
     @Features("SOAP Request using REST ASSURED")
     public void getBankDetails1(@Parameter("Bank Blz Code") Object bankBlzCode) throws Exception
@@ -55,10 +55,21 @@ public class Test2 {
             e.printStackTrace();
         }*/
 
-        Response response = RestAssured.given().config(RestAssured.config().
-                logConfig (LogConfig.logConfig ().enableLoggingOfRequestAndResponseIfValidationFails (LogDetail.ALL))).baseUri(BaseURL).request()
-                .body(request.setBankNum(bankBlzCode).bankDetails())
-                .when().post().then().statusCode(200).extract().response();
+        Response response = RestAssured
+                .given()
+                .auth()
+                .basic("admin","admin")
+                .config(RestAssured.config()
+                        .logConfig (LogConfig.logConfig ().enableLoggingOfRequestAndResponseIfValidationFails (LogDetail.ALL)))
+                .baseUri(BaseURL).request()
+                .body(request.setBankNum(bankBlzCode)
+                        .bankDetails())
+                .when()
+                .post()
+                .then()
+                .statusCode(200)
+                .extract()
+                .response();
 
         try
         {

@@ -3,7 +3,7 @@
  * @Date 04-DEC-2017
  */
 
-package example.requestSetup;
+package example1;
 
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Stories;

@@ -9,24 +9,24 @@ import java.net.InetAddress;
 import java.util.Properties;
 
 import controllers.BaseMethod;
+import controllers.InitMethod;
 
-import static controllers.InitMethod.OSArchitecture;
-import static controllers.InitMethod.OSBit;
-import static controllers.InitMethod.OSName;
+import static controllers.InitMethod.*;
 
 /**
  * @Author Gladson Antony
  * @Date 28-Jan-2017
  */
-public class EnvironmentSetup
+public class EnvironmentSetup extends InitMethod
 {
-	
 	public static void environmentSetup() throws Exception
 	{
+		System.out.println("Running Environment Setup");
 		try 
 		{
 			Properties properties = new Properties();
 			properties.setProperty("Author", "Gladson Antony");
+			properties.setProperty("Environment",BaseURL);
 			properties.setProperty("OS", OSName);
 			properties.setProperty("OS Architecture", OSArchitecture);
 			properties.setProperty("OS Bit", OSBit);
@@ -36,7 +36,7 @@ public class EnvironmentSetup
 
 			File file = new File("./src/main/resources/environment.properties");
 			FileOutputStream fileOut = new FileOutputStream(file);
-			properties.store(fileOut, "Environment Setup");
+			properties.store(fileOut, "Envronement Setup");
 			fileOut.close();
 		} 
 		catch (Exception e) 

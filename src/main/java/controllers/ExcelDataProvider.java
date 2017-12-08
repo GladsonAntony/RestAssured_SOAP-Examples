@@ -19,7 +19,7 @@ public class ExcelDataProvider extends InitMethod
 	@DataProvider(name="multiSheetExcelRead", parallel=true)
 	public static Object[][] multiSheetExcelRead(Method method) throws Exception
 	{
-		File file = new File("./src/test/resources/Excel Files/TestData.xlsx");
+		File file = new File("src/test/resources/Excel Files/TestData.xlsx");
 		String SheetName = method.getName();
 		System.out.println(SheetName);
 		Object testObjArray[][] = ExcelUtils.getTableArray(file.getAbsolutePath(), SheetName);
@@ -29,7 +29,7 @@ public class ExcelDataProvider extends InitMethod
 	@DataProvider(name="excelSheetNameAsMethodName",parallel=true)
 	public static Object[][] excelSheetNameAsMethodName(Method method) throws Exception
 	{
-		File file = new File("src/test/resources/Excel Files/"+method.getName()+".xls");
+		File file = new File("src/test/resources/Excel Files/"+method.getName()+".xlsx");
 		System.out.println("Opening Excel File:" +file.getAbsolutePath());
 		Object testObjArray[][] = ExcelUtils.getTableArray(file.getAbsolutePath());
 		return testObjArray;
