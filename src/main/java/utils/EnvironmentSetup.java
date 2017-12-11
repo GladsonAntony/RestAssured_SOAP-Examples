@@ -6,12 +6,10 @@ package utils;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.net.InetAddress;
+import java.net.URL;
 import java.util.Properties;
 
-import controllers.BaseMethod;
 import controllers.InitMethod;
-
-import static controllers.InitMethod.*;
 
 /**
  * @Author Gladson Antony
@@ -21,12 +19,14 @@ public class EnvironmentSetup extends InitMethod
 {
 	public static void environmentSetup() throws Exception
 	{
+		URL aURL = new URL(BaseURL);
 		System.out.println("Running Environment Setup");
 		try 
 		{
 			Properties properties = new Properties();
 			properties.setProperty("Author", "Gladson Antony");
-			properties.setProperty("Environment",BaseURL);
+			properties.setProperty("Application URL",BaseURL);
+			properties.setProperty("Environment",aURL.getHost().toUpperCase().toString().replace("WWW","").replace("COM", "").replace(".", ""));
 			properties.setProperty("OS", OSName);
 			properties.setProperty("OS Architecture", OSArchitecture);
 			properties.setProperty("OS Bit", OSBit);
@@ -35,7 +35,8 @@ public class EnvironmentSetup extends InitMethod
 			properties.setProperty("Host IP Address", InetAddress.getLocalHost().getHostAddress());
 
 			File file = new File("./src/main/resources/environment.properties");
-			FileOutputStream fileOut = new FileOutputStream(file);
+			System.out.println(file.getAbsolutePath());
+			FileOutputStream fileOut = new FileOutputStream(file.getAbsoluteFile());
 			properties.store(fileOut, "Envronement Setup");
 			fileOut.close();
 		} 

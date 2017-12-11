@@ -10,15 +10,14 @@ import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 
-import controllers.BaseMethod;
-import utils.AllureAttachments;
+import controllers.TestController;
 
 /**
  * @Author Gladson Antony
- * @Date 04-Dec-2017
+ * @Date 04-DEC-2017
  */
 
-public class AllureListener extends BaseMethod implements ITestListener, ISuiteListener, IInvokedMethodListener {
+public class AllureListener extends TestController implements ITestListener, ISuiteListener, IInvokedMethodListener {
 
     /*This belongs to ISuiteListener and will execute before the Suite Starts*/
     @Override
@@ -59,8 +58,7 @@ public class AllureListener extends BaseMethod implements ITestListener, ISuiteL
     /*This belongs to ITestListener, It will Execute only when the Test is FAILED*/
     @Override
     public void onTestFailure(ITestResult result) {
-        String Name = result.getTestClass().getName() + "." + result.getMethod().getMethodName();
-        Reporter.log("\nFAILED TEST: " + result.getTestClass().getName() + "." + result.getMethod().getMethodName() + "\n", true);
+               Reporter.log("\nFAILED TEST: " + result.getTestClass().getName() + "." + result.getMethod().getMethodName() + "\n", true);
     }
 
 

@@ -1,23 +1,23 @@
 package example2;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
+import org.testng.annotations.Test;
+
 import controllers.ExcelDataProvider;
+import controllers.TestController;
 import io.restassured.RestAssured;
 import io.restassured.config.LogConfig;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.response.Response;
-import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.Parameter;
 import ru.yandex.qatools.allure.annotations.Title;
 import utils.AllureAttachments;
 
-import java.io.FileWriter;
-import java.io.IOException;
-
-import static controllers.InitMethod.BaseURL;
-
-public class Test2 {
+public class Test2 extends TestController{
     @Test(dataProvider = "excelSheetNameAsMethodName", dataProviderClass = ExcelDataProvider.class)
     @Description("To verify the usage of SOAP Requests using Rest Assured.")
     @Features("SOAP Request using REST ASSURED")
