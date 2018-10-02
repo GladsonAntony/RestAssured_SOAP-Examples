@@ -18,25 +18,47 @@ import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.Parameter;
 
-public class Test1 extends TestController{
+public class Test1 extends TestController
+{
 	GetBankRequest request = new GetBankRequest();
 
 	@DataProvider(name = "bankBlz")
-	public static Object[][] bankBlz() {
-		return new Object[][] { { "39060180" }, { "51010800" }, { "10030400" }, { "76060561" },
-				{ RandomStringUtils.randomNumeric(8) } };
+	public static Object[][] bankBlz()
+	{
+		return new Object[][]
+		{
+				{ "39060180" },
+				{ "51010800" },
+				{ "10030400" },
+				{ "76060561" },
+				{
+					RandomStringUtils.randomNumeric(8)
+				}
+		};
 	}
 
 	@Test(dataProvider = "bankBlz")
 	@Description("To verify the usage of SOAP Requests using Rest Assured.")
 	@Features("SOAP Request using REST ASSURED")
-	public void getBankDetails1(@Parameter("Bank Blz Code") Object bankBlzCode) throws Exception {
+	public void getBankDetails1(@Parameter("Bank Blz Code") Object bankBlzCode) throws Exception
+	{
 		@SuppressWarnings("unused")
-		Response response = RestAssured.given().auth().basic("admin", "admin")
+		Response response = RestAssured
+				.given()
+				.auth()
+				.basic("admin", "admin")
 				.config(RestAssured.config().logConfig(
 						LogConfig.logConfig().enableLoggingOfRequestAndResponseIfValidationFails(LogDetail.ALL)))
-				.baseUri(BaseURL).request().body(request.setBankNum(bankBlzCode).bankDetails()).when().post().then()
-				.statusCode(200).extract().response();
+				.baseUri(BaseURL)
+				.request()
+				.body(request.setBankNum(bankBlzCode)
+						.bankDetails())
+				.when()
+				.post()
+				.then()
+				.statusCode(200)
+				.extract()
+				.response();
 
 		/*
 		 * try { FileWriter file = new FileWriter("./src/test/resources/Response/" +

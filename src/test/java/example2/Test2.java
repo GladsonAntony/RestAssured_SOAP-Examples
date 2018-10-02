@@ -1,3 +1,7 @@
+/**
+ * @Author Gladson Antony
+ * @Date 02-OCT-2018
+ */
 package example2;
 
 import java.io.FileWriter;
@@ -17,12 +21,14 @@ import ru.yandex.qatools.allure.annotations.Parameter;
 import ru.yandex.qatools.allure.annotations.Title;
 import utils.AllureAttachments;
 
-public class Test2 extends TestController{
+public class Test2 extends TestController
+{
     @Test(dataProvider = "excelSheetNameAsMethodName", dataProviderClass = ExcelDataProvider.class)
     @Description("To verify the usage of SOAP Requests using Rest Assured.")
     @Features("SOAP Request using REST ASSURED")
     @Title("Get Bank Details")
-    public void getBankDetails(@Parameter("Bank Blz Code") Object bankBlzCode) throws Exception {
+    public void getBankDetails(@Parameter("Bank Blz Code") Object bankBlzCode) throws Exception
+    {
         String getBankDetails = "<soapenv:Envelope \n" +
                 "    xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" \n" +
                 "    xmlns:blz=\"http://thomas-bayer.com/blz/\">\n" +
@@ -35,29 +41,47 @@ public class Test2 extends TestController{
                 "</soapenv:Envelope>";
 
 
-        try {
+        try
+        {
             FileWriter file = new FileWriter("./src/test/resources/Requests/" + bankBlzCode + "_Request.xml");
             file.write(getBankDetails);
             file.flush();
             file.close();
             AllureAttachments.attachFileType_XML("./src/test/resources/Requests/" + bankBlzCode + "_Request.xml");
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             e.printStackTrace();
         }
 
-		Response response = RestAssured.given().auth().basic("admin", "admin")
+		Response response = RestAssured
+                .given()
+                .auth()
+                .basic("admin", "admin")
 				.config(RestAssured.config().logConfig(
 						LogConfig.logConfig().enableLoggingOfRequestAndResponseIfValidationFails(LogDetail.ALL)))
-				.baseUri(BaseURL).request().body(getBankDetails).when().post().then().statusCode(200).extract()
+				.baseUri(BaseURL)
+                .request()
+                .body(getBankDetails)
+                .when()
+                .post()
+                .then()
+                .statusCode(200)
+                .extract()
 				.response();
 
-        try {
+        //Assert.assertTrue(response.getBody().prettyPrint().toString().contains("ACREDOBANK"));
+
+        try
+        {
             FileWriter file = new FileWriter("./src/test/resources/Response/" + bankBlzCode + "_Response.xml");
             file.write(response.getBody().prettyPrint().toString());
             file.flush();
             file.close();
             AllureAttachments.attachFileType_XML("./src/test/resources/Response/" + bankBlzCode + "_Response.xml");
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             e.printStackTrace();
         }
 

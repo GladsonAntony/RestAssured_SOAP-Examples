@@ -13,7 +13,8 @@ public class GetBankRequest
 {
     public Object bankNum;
 
-    public GetBankRequest setBankNum(Object bankNum) {
+    public GetBankRequest setBankNum(Object bankNum)
+    {
         this.bankNum = bankNum;
         return this;
     }
