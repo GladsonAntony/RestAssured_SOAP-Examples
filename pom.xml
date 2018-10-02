@@ -12,7 +12,7 @@
 		<compiler.version>1.8</compiler.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<rest.assured.version>3.0.6</rest.assured.version>
+		<rest.assured.version>3.1.1</rest.assured.version>
 		<testng.version>6.11</testng.version>
 		<aspectj.version>1.8.13</aspectj.version>
 		<slf4j.version>1.7.24</slf4j.version>
