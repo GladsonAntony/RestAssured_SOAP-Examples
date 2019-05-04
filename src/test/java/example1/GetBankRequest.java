@@ -5,10 +5,8 @@
 
 package example1;
 
-import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.Stories;
+import io.qameta.allure.Story;
 
-@Description("Class to set SOAP Request")
 public class GetBankRequest
 {
     public Object bankNum;
@@ -19,7 +17,7 @@ public class GetBankRequest
         return this;
     }
 
-    @Stories("XML as String")
+    @Story("This is a sample XML Request. Testing of Story Annotations")
     public String bankDetails() {
         return "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:blz=\"http://thomas-bayer.com/blz/\">\n" +
                 "   <soapenv:Header/>\n" +

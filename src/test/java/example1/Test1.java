@@ -5,18 +5,14 @@
 
 package example1;
 
-import org.apache.commons.lang3.RandomStringUtils;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-
 import controllers.TestController;
 import io.restassured.RestAssured;
 import io.restassured.config.LogConfig;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.response.Response;
-import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.Features;
-import ru.yandex.qatools.allure.annotations.Parameter;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 public class Test1 extends TestController
 {
@@ -38,9 +34,7 @@ public class Test1 extends TestController
 	}
 
 	@Test(dataProvider = "bankBlz")
-	@Description("To verify the usage of SOAP Requests using Rest Assured.")
-	@Features("SOAP Request using REST ASSURED")
-	public void getBankDetails1(@Parameter("Bank Blz Code") Object bankBlzCode) throws Exception
+	public void getBankDetails1(Object bankBlzCode) throws Exception
 	{
 		@SuppressWarnings("unused")
 		Response response = RestAssured

@@ -4,30 +4,23 @@
  */
 package example2;
 
-import java.io.FileWriter;
-import java.io.IOException;
-
-import org.testng.annotations.Test;
-
 import controllers.ExcelDataProvider;
 import controllers.TestController;
+import io.qameta.allure.Allure;
 import io.restassured.RestAssured;
 import io.restassured.config.LogConfig;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.response.Response;
-import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.Features;
-import ru.yandex.qatools.allure.annotations.Parameter;
-import ru.yandex.qatools.allure.annotations.Title;
+import org.testng.annotations.Test;
 import utils.AllureAttachments;
+
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Test2 extends TestController
 {
     @Test(dataProvider = "excelSheetNameAsMethodName", dataProviderClass = ExcelDataProvider.class)
-    @Description("To verify the usage of SOAP Requests using Rest Assured.")
-    @Features("SOAP Request using REST ASSURED")
-    @Title("Get Bank Details")
-    public void getBankDetails(@Parameter("Bank Blz Code") Object bankBlzCode) throws Exception
+    public void getBankDetails( Object bankBlzCode) throws Exception
     {
         String getBankDetails = "<soapenv:Envelope \n" +
                 "    xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" \n" +
@@ -47,6 +40,7 @@ public class Test2 extends TestController
             file.write(getBankDetails);
             file.flush();
             file.close();
+            Allure.addAttachment("Attachement 1","./src/test/resources/Requests/" + bankBlzCode + "_Request.xml");
             AllureAttachments.attachFileType_XML("./src/test/resources/Requests/" + bankBlzCode + "_Request.xml");
         }
         catch (IOException e)
@@ -66,7 +60,7 @@ public class Test2 extends TestController
                 .when()
                 .post()
                 .then()
-                .statusCode(200)
+                //.statusCode(200)
                 .extract()
 				.response();
 
@@ -79,6 +73,7 @@ public class Test2 extends TestController
             file.flush();
             file.close();
             AllureAttachments.attachFileType_XML("./src/test/resources/Response/" + bankBlzCode + "_Response.xml");
+            Allure.addAttachment(bankBlzCode.toString(),response.getBody().prettyPrint().toString());
         }
         catch (IOException e)
         {

@@ -4,11 +4,14 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import javax.imageio.ImageIO;
 
-import ru.yandex.qatools.allure.annotations.Attachment;
+import io.qameta.allure.Allure;
+import io.qameta.allure.Attachment;
 
 /**
  * @Author Gladson Antony
@@ -30,7 +33,8 @@ public class AllureAttachments {
     /*To Attach the XML File to the Allure Report*/
     @Attachment(value = "XML Attachment - {0}", type = "text/xml")
     public static byte[] attachFileType_XML(String filePath) throws Exception {
-        return fileToBytes(filePath);
+        File XMLAttachment = new File(filePath);
+        return Files.readAllBytes(XMLAttachment.toPath());
     }
 
     /*To Attach the XLSX File to the Allure Report*/

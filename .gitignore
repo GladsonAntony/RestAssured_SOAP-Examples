@@ -1,3 +1,5 @@
 .idea
 /target
 *.xml
+.allure
+.allure-results
