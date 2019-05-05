@@ -9,9 +9,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import javax.imageio.ImageIO;
+import java.util.Arrays;
 
 import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
+import io.qameta.allure.Step;
+
+import static controllers.InitMethod.ProjectWorkingDirectory;
 
 /**
  * @Author Gladson Antony
@@ -32,9 +36,10 @@ public class AllureAttachments {
 
     /*To Attach the XML File to the Allure Report*/
     @Attachment(value = "XML Attachment - {0}", type = "text/xml")
-    public static byte[] attachFileType_XML(String filePath) throws Exception {
-        File XMLAttachment = new File(filePath);
-        return Files.readAllBytes(XMLAttachment.toPath());
+    public static byte[]  attachFileType_XML(String filePath) throws Exception
+    {
+        System.out.println(ProjectWorkingDirectory +filePath);
+        return fileToBytes(ProjectWorkingDirectory +filePath);
     }
 
     /*To Attach the XLSX File to the Allure Report*/
@@ -85,4 +90,11 @@ public class AllureAttachments {
         return fileToBytes(filePath);
     }
 
+    @Step("Sub-step with XML File Attachment")
+    @Attachment(value = "XML Attachment - {0}", type = "text/xml")
+    public static byte[] subStepWithAttachment_XMLFile(String filePath) throws IOException {
+        return Files.readAllBytes(
+                new File(filePath).toPath()
+        );
+    }
 }

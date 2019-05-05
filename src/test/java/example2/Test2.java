@@ -7,12 +7,12 @@ package example2;
 import controllers.ExcelDataProvider;
 import controllers.TestController;
 import io.qameta.allure.Allure;
+import io.qameta.allure.Description;
 import io.restassured.RestAssured;
 import io.restassured.config.LogConfig;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
-import utils.AllureAttachments;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,6 +20,7 @@ import java.io.IOException;
 public class Test2 extends TestController
 {
     @Test(dataProvider = "excelSheetNameAsMethodName", dataProviderClass = ExcelDataProvider.class)
+    @Description("To Demo the Use of XMLs using the RestAssured Framework")
     public void getBankDetails( Object bankBlzCode) throws Exception
     {
         String getBankDetails = "<soapenv:Envelope \n" +
@@ -40,8 +41,7 @@ public class Test2 extends TestController
             file.write(getBankDetails);
             file.flush();
             file.close();
-            Allure.addAttachment("Attachement 1","./src/test/resources/Requests/" + bankBlzCode + "_Request.xml");
-            AllureAttachments.attachFileType_XML("./src/test/resources/Requests/" + bankBlzCode + "_Request.xml");
+            Allure.addAttachment(bankBlzCode.toString()+"_Request.xml","text/xml",getBankDetails);
         }
         catch (IOException e)
         {
@@ -72,8 +72,7 @@ public class Test2 extends TestController
             file.write(response.getBody().prettyPrint().toString());
             file.flush();
             file.close();
-            AllureAttachments.attachFileType_XML("./src/test/resources/Response/" + bankBlzCode + "_Response.xml");
-            Allure.addAttachment(bankBlzCode.toString(),response.getBody().prettyPrint().toString());
+            Allure.addAttachment(bankBlzCode.toString()+"_Response.xml","text/xml",response.getBody().prettyPrint().toString());
         }
         catch (IOException e)
         {
