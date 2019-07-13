@@ -14,12 +14,15 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.surefire.version>3.0.0-M3</maven.surefire.version>
 		<maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
+		<maven.source.plugin.version>3.1.0</maven.source.plugin.version>
+		<maven.javadoc.plugin.version>3.1.1</maven.javadoc.plugin.version>
 		<testng.version>6.14.3</testng.version>
-		<rest.assured.version>3.3.0</rest.assured.version>
+		<rest.assured.version>4.0.0</rest.assured.version>
 		<testng.version>6.14.3</testng.version>
 		<aspectj.version>1.9.1</aspectj.version>
 		<slf4j.version>1.7.26</slf4j.version>
-		<allure.version>2.10.0</allure.version>
+		<allure.version>2.12.1</allure.version>
+		<allure.maven.plugin.version>2.10.0</allure.maven.plugin.version>
 		<apachepoi.version>3.13</apachepoi.version>
 		<faker.version>0.16</faker.version>
 		<lombok.version>1.18.2</lombok.version>
@@ -102,10 +105,11 @@
 		</dependency>
 
 
+		<!--Jackson Data Bind Maven Dependency-->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.9.8</version>
+			<version>2.9.9.1</version>
 		</dependency>
 
 
@@ -225,6 +229,22 @@
 		</dependency>
 
 
+		<!-- Allure Rest Assured Maven Dependency-->
+		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-rest-assured</artifactId>
+			<version>${allure.version}</version>
+		</dependency>
+
+
+		<!-- Allure Model jackson Dependency-->
+		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure2-model-jackson</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+
 		<!-- Java Faker Dependency -->
 		<dependency>
 			<groupId>com.github.javafaker</groupId>
@@ -247,6 +267,54 @@
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>25.0-jre</version>
+		</dependency>
+
+
+		<!-- JAXB API Maven Dependency-->
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+
+
+		<!-- JAXB API Implementation Maven Dependency-->
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.3.2</version>
+		</dependency>
+
+
+		<!-- JAXB API Runtime Maven Dependency-->
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+
+
+		<!-- JAXB API OSGI Maven Dependency-->
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-osgi</artifactId>
+			<version>2.3.2</version>
+		</dependency>
+
+
+		<!-- JAXB API Activations Maven Dependency-->
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>activation</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
+
+		<!-- Apache Commons API-->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.9</version>
 		</dependency>
 	</dependencies>
 
@@ -285,8 +353,9 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven.compiler.plugin.version}</version>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+<!--					<source>1.8</source>-->
+<!--					<target>1.8</target>-->
+					<release>12</release>
 				</configuration>
 			</plugin>
 
@@ -321,14 +390,14 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
-				<version>3.0.1</version>
+				<version>${maven.source.plugin.version}</version>
 			</plugin>
 
 			<!-- The Javadoc Plugin uses the Javadoc tool to generate javadocs for the specified project -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.0.1</version>
+				<version>${maven.javadoc.plugin.version}</version>
 			</plugin>
 		</plugins>
 	</build>
@@ -340,7 +409,7 @@
 			<plugin>
 				<groupId>io.qameta.allure</groupId>
 				<artifactId>allure-maven</artifactId>
-				<version>2.9</version>
+				<version>${allure.maven.plugin.version}</version>
 			</plugin>
 		</plugins>
 	</reporting>

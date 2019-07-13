@@ -3,13 +3,13 @@
  */
 package utils;
 
+import controllers.InitMethod;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.net.InetAddress;
 import java.net.URL;
 import java.util.Properties;
-
-import controllers.InitMethod;
 
 /**
  * @Author Gladson Antony
@@ -39,8 +39,10 @@ public class EnvironmentSetup extends InitMethod
 			System.out.println("OS Architecture --> " +properties.getProperty("OS Architecture"));
 			properties.setProperty("OS Bit", OSBit);
 			System.out.println("OS Bit --> " +properties.getProperty("OS Bit"));
-			properties.setProperty("Java Version", Runtime.class.getPackage().getImplementationVersion());
+			properties.setProperty("Java Version" ,java.lang.Runtime.version().toString());
 			System.out.println("Java Version --> " +properties.getProperty("Java Version"));
+			properties.setProperty("Java Build Version" ,java.lang.Runtime.version().build().get().toString());
+			System.out.println("Java Build Version --> " +properties.getProperty("Java Build Version"));
 			properties.setProperty("Host Name", InetAddress.getLocalHost().getHostName());
 			System.out.println("Host Name --> " +properties.getProperty("Host Name"));
 			properties.setProperty("Host IP Address", InetAddress.getLocalHost().getHostAddress());

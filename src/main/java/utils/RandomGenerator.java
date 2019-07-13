@@ -1,8 +1,10 @@
 package utils;
 
-import java.util.Random;
+
 
 import org.apache.commons.lang3.RandomStringUtils;
+
+import java.util.Random;
 
 /**
  * @Author Gladson Antony
@@ -27,7 +29,7 @@ public class RandomGenerator
 		int maxnum = (num*10) - 1;
 		int randnum = num + rand.nextInt(maxnum) + 1;
 
-		String RandNum = new Integer(randnum).toString();
+		String RandNum = Integer.toString(randnum);
 		return RandNum;
 	}
 
