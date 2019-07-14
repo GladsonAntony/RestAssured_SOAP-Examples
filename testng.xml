@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Rest Assured Suite">
-	<listeners>
-		<listener class-name="listeners.AllureListener"></listener>
-	</listeners>
-  <test name="Tests">
-    <classes>
-      <class name="example2.Test2"/>
-      <class name="example1.Test1"/>
-    </classes>
-  </test> <!-- Tests -->
+    <listeners>
+        <listener class-name="listeners.AllureListener"></listener>
+    </listeners>
+    <test name="Tests">
+        <classes>
+            <class name="example2.Test2"/>
+            <class name="example1.Test1"/>
+            <class name="example3.Test3"/>
+        </classes>
+    </test> <!-- Tests -->
 </suite> <!-- Rest Assured Suite -->

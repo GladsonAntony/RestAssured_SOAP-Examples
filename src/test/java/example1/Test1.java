@@ -6,6 +6,7 @@
 package example1;
 
 import controllers.TestController;
+import io.qameta.allure.Description;
 import io.restassured.RestAssured;
 import io.restassured.config.LogConfig;
 import io.restassured.filter.log.LogDetail;
@@ -34,6 +35,7 @@ public class Test1 extends TestController
 	}
 
 	@Test(dataProvider = "bankBlz")
+	@Description("To Demo the Use of Soap XMLs using Rest Assured by Reading the Request from external Java File.")
 	public void getBankDetails1(Object bankBlzCode) throws Exception
 	{
 		@SuppressWarnings("unused")
