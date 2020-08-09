@@ -11,8 +11,6 @@
 #folders
 target
 test-output
-Requests
-Response
 
 #intellij idea
 .idea

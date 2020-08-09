@@ -10,5 +10,5 @@
             <class name="example1.Test1"/>
             <class name="example3.Test3"/>
         </classes>
-    </test> <!-- Tests -->
-</suite> <!-- Rest Assured Suite -->
+    </test>    <!-- Tests -->
+</suite><!-- Rest Assured Suite -->

@@ -1,0 +1,12 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <ns1:getBankResponse xmlns:ns1="http://thomas-bayer.com/blz/">
+      <ns1:details>
+        <ns1:bezeichnung>ACREDOBANK</ns1:bezeichnung>
+        <ns1:bic>GENODEF1N05</ns1:bic>
+        <ns1:ort>Nürnberg, Mittelfr</ns1:ort>
+        <ns1:plz>90026</ns1:plz>
+      </ns1:details>
+    </ns1:getBankResponse>
+  </soapenv:Body>
+</soapenv:Envelope>

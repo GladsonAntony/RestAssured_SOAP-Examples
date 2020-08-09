@@ -1,0 +1,12 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <ns1:getBankResponse xmlns:ns1="http://thomas-bayer.com/blz/">
+      <ns1:details>
+        <ns1:bezeichnung>Aachener Bank</ns1:bezeichnung>
+        <ns1:bic>GENODED1AAC</ns1:bic>
+        <ns1:ort>Aachen</ns1:ort>
+        <ns1:plz>52001</ns1:plz>
+      </ns1:details>
+    </ns1:getBankResponse>
+  </soapenv:Body>
+</soapenv:Envelope>

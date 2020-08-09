@@ -1,36 +1,28 @@
 package utils;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.util.NumberToTextConverter;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.util.NumberToTextConverter;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 /**
  * @Author Gladson Antony
- * @Date 21-Feb-2017
+ * @Date 2020-08-09T17:33:33+05:30
  */
 public class ExcelUtils {
     private static XSSFSheet xlsxWorkSheet;
     private static XSSFWorkbook xlsxWorkBook;
-    private static XSSFCell xlsxCell;
-    @SuppressWarnings("unused")
-    private static XSSFRow xlsxRow;
-
     private static HSSFSheet xlsWorkSheet;
     private static HSSFWorkbook xlsWorkBook;
-    private static HSSFCell xlsCell;
-    @SuppressWarnings("unused")
-    private static HSSFRow xlsRow;
+
 
     /**
      * To get the Excel-XLSX File with Path and SheetName
@@ -173,16 +165,13 @@ public class ExcelUtils {
     public static Object getCellData_XLSX(int RowNum, int ColNum) throws Exception {
         Object CellData = null;
         try {
-            xlsxCell = xlsxWorkSheet.getRow(RowNum).getCell(ColNum);
-            if (xlsxCell.getCellType() == Cell.CELL_TYPE_STRING) {
-                String stringCellData = xlsxCell.getStringCellValue();
-                CellData = stringCellData;
-            } else if (xlsxCell.getCellType() == Cell.CELL_TYPE_NUMERIC)
-            {
+            XSSFCell xlsxCell = xlsxWorkSheet.getRow(RowNum).getCell(ColNum);
+            if (xlsxCell.getCellType() == CellType.STRING) {
+                CellData = xlsxCell.getStringCellValue();
+            } else if (xlsxCell.getCellType() == CellType.NUMERIC) {
                 CellData = NumberToTextConverter.toText(xlsxCell.getNumericCellValue());
-            } else if (xlsxCell.getCellType() == Cell.CELL_TYPE_BOOLEAN) {
-                boolean booleanCellData = xlsxCell.getBooleanCellValue();
-                CellData = booleanCellData;
+            } else if (xlsxCell.getCellType() == CellType.BOOLEAN) {
+                CellData = xlsxCell.getBooleanCellValue();
             }
             return CellData;
         } catch (Exception e) {
@@ -196,15 +185,13 @@ public class ExcelUtils {
     public static Object getCellData_XLS(int RowNum, int ColNum) throws Exception {
         Object CellData = null;
         try {
-            xlsCell = xlsWorkSheet.getRow(RowNum).getCell(ColNum);
-            if (xlsCell.getCellType() == Cell.CELL_TYPE_STRING) {
-                String stringCellData = xlsCell.getStringCellValue();
-                CellData = stringCellData;
-            } else if (xlsCell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
+            HSSFCell xlsCell = xlsWorkSheet.getRow(RowNum).getCell(ColNum);
+            if (xlsCell.getCellType() == CellType.STRING) {
+                CellData = xlsCell.getStringCellValue();
+            } else if (xlsCell.getCellType() == CellType.NUMERIC) {
                 CellData = NumberToTextConverter.toText(xlsCell.getNumericCellValue());
-            } else if (xlsCell.getCellType() == Cell.CELL_TYPE_BOOLEAN) {
-                boolean booleanCellData = xlsCell.getBooleanCellValue();
-                CellData = booleanCellData;
+            } else if (xlsCell.getCellType() == CellType.BOOLEAN) {
+                CellData = xlsCell.getBooleanCellValue();
             }
             return CellData;
         } catch (Exception e) {
@@ -216,31 +203,27 @@ public class ExcelUtils {
      * To get Excel-XLSX Row Count
      */
     public static int xlsxRowCount() {
-        int rowNum = xlsxWorkSheet.getLastRowNum() + 1;
-        return rowNum;
+        return xlsxWorkSheet.getLastRowNum() + 1;
     }
 
     /**
      * To get Excel-XLS Row Count
      */
     public static int xlsRowCount() {
-        int rowNum = xlsWorkSheet.getLastRowNum() + 1;
-        return rowNum;
+        return xlsWorkSheet.getLastRowNum() + 1;
     }
 
     /**
      * To get Excel-XLSX Column Count
      */
     public static int xlsxColumnCount() {
-        int rowNum = xlsxWorkSheet.getRow(0).getLastCellNum();
-        return rowNum;
+        return xlsxWorkSheet.getRow(0).getLastCellNum();
     }
 
     /**
      * To get Excel-XLS Column Count
      */
     public static int xlsColumnCount() {
-        int rowNum = xlsWorkSheet.getRow(0).getLastCellNum();
-        return rowNum;
+        return xlsWorkSheet.getRow(0).getLastCellNum();
     }
 }

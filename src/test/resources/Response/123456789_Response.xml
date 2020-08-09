@@ -1,0 +1,38 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <soapenv:Fault>
+      <faultcode>soapenv:Server</faultcode>
+      <faultstring>Keine Bank zur BLZ 123456789 gefunden!</faultstring>
+      <detail>
+        <Exception>org.apache.axis2.AxisFault: Keine Bank zur BLZ 123456789 gefunden!
+	at com.thomas_bayer.blz.BLZService.getBank(BLZService.java:41)
+	at com.thomas_bayer.blz.BLZServiceMessageReceiverInOut.invokeBusinessLogic(BLZServiceMessageReceiverInOut.java:49)
+	at org.apache.axis2.receivers.AbstractInOutSyncMessageReceiver.invokeBusinessLogic(AbstractInOutSyncMessageReceiver.java:42)
+	at org.apache.axis2.receivers.AbstractMessageReceiver.receive(AbstractMessageReceiver.java:96)
+	at org.apache.axis2.engine.AxisEngine.receive(AxisEngine.java:145)
+	at org.apache.axis2.transport.http.HTTPTransportUtils.processHTTPPostRequest(HTTPTransportUtils.java:275)
+	at org.apache.axis2.transport.http.AxisServlet.doPost(AxisServlet.java:120)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:646)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:303)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:220)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:122)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:501)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:950)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:170)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:116)
+	at org.apache.catalina.valves.RemoteIpValve.invoke(RemoteIpValve.java:683)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1041)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:607)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:313)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+</Exception>
+      </detail>
+    </soapenv:Fault>
+  </soapenv:Body>
+</soapenv:Envelope>
